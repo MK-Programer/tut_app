@@ -74,6 +74,73 @@ ThemeData getApplicationTheme() {
         color: ColorManager.grey,
       ),
     ),
+
     // input decoration theme (text form field)
+    inputDecorationTheme: InputDecorationTheme(
+      // content padding
+      contentPadding: const EdgeInsets.all(
+        AppPadding.p8,
+      ),
+      // hint style
+      hintStyle: getRegularStyle(
+        color: ColorManager.grey,
+        fontSize: FontSize.s14,
+      ),
+      // label style
+      labelStyle: getMediumStyle(
+        color: ColorManager.grey,
+        fontSize: FontSize.s14,
+      ),
+      errorStyle: getRegularStyle(
+        color: ColorManager.error,
+      ),
+      // enabled border style
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorManager.primary,
+          width: AppSize.s1_5,
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(
+            AppSize.s8,
+          ),
+        ),
+      ),
+      // focused border style
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorManager.grey,
+          width: AppSize.s1_5,
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(
+            AppSize.s8,
+          ),
+        ),
+      ),
+      // error border style
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorManager.error,
+          width: AppSize.s1_5,
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(
+            AppSize.s8,
+          ),
+        ),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorManager.primary,
+          width: AppSize.s1_5,
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(
+            AppSize.s8,
+          ),
+        ),
+      ),
+    ),
   );
 }
