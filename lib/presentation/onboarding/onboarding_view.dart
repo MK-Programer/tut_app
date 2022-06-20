@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/assets_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/color_manager.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({Key? key}) : super(key: key);
@@ -10,15 +13,45 @@ class OnBoardingView extends StatefulWidget {
 }
 
 class _OnBoardingViewState extends State<OnBoardingView> {
+  late final List<SliderObject> _list = _getSliderData();
+  final PageController _pageController = PageController();
+  int _currentIndex = 0;
+
+  List<SliderObject> _getSliderData() => [
+        SliderObject(AppStrings.noBoardingTitle1,
+            AppStrings.noBoardingSubTitle1, ImageAssets.onBoardingLogo1),
+        SliderObject(AppStrings.noBoardingTitle2,
+            AppStrings.noBoardingSubTitle2, ImageAssets.onBoardingLogo2),
+        SliderObject(AppStrings.noBoardingTitle3,
+            AppStrings.noBoardingSubTitle3, ImageAssets.onBoardingLogo3),
+        SliderObject(AppStrings.noBoardingTitle4,
+            AppStrings.noBoardingSubTitle4, ImageAssets.onBoardingLogo1),
+      ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.grey2,
-      body: const Center(
-        child: Text(
-          "Welcome to on boarding",
+      backgroundColor: ColorManager.white,
+      appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: ColorManager.white,
+          statusBarBrightness: Brightness.dark,
         ),
+      ),
+      body: PageView.builder(
+        controller: _pageController,
+        itemCount: _list.length,
+        onPageChanged: (index) {},
+        itemBuilder: itemBuilder,
       ),
     );
   }
+}
+
+class SliderObject {
+  String title;
+  String subTitle;
+  String image;
+
+  SliderObject(this.title, this.subTitle, this.image);
 }
