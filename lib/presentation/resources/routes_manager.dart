@@ -3,6 +3,7 @@ import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/forge
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/login/login_view.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/main_view.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/register/register_view.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/splash/splash_view.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/store_details/store_details.dart';
 
@@ -40,13 +41,13 @@ class RouteGenerator {
       builder: (_) => Scaffold(
         appBar: AppBar(
           title: const Text(
-            'No Route Found',
+            AppStrings.noRouteFound,
           ),
         ),
         // ignore: prefer_const_constructors
         body: Center(
           child: const Text(
-            'No Route Found',
+            AppStrings.noRouteFound,
           ),
         ),
       ),
