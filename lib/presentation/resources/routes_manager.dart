@@ -11,11 +11,11 @@ import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/store
 class Routes {
   static const String splashRoute = "/";
   static const String loginRoute = "/login";
+  static const String onBoardingRoute = "/onBoarding";
   static const String registerRoute = "/register";
   static const String forgetPasswordhRoute = "/forgetPassword";
   static const String mainRoute = "/main";
   static const String storeDetailsRoute = "/storeDetails";
-  static const String onBoardingRoute = "/onBoarding";
 }
 
 class RouteGenerator {
@@ -25,6 +25,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const SplashView());
       case Routes.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginView());
+      case Routes.onBoardingRoute:
+        return MaterialPageRoute(builder: (_) => const OnBoardingView());
       case Routes.registerRoute:
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.forgetPasswordhRoute:
@@ -33,8 +35,6 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const MainView());
       case Routes.storeDetailsRoute:
         return MaterialPageRoute(builder: (_) => const StoreDetailsView());
-      case Routes.onBoardingRoute:
-        return MaterialPageRoute(builder: (_) => const OnBoardingView());
       default:
         return unDefinedRoute();
     }
