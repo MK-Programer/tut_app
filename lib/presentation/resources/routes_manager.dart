@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/forget_password/forget_password.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/login/login_view.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/main_view.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/onboarding/onboarding_view.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/register/register_view.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/splash/splash_view.dart';
@@ -14,6 +15,7 @@ class Routes {
   static const String forgetPasswordhRoute = "/forgetPassword";
   static const String mainRoute = "/main";
   static const String storeDetailsRoute = "/storeDetails";
+  static const String onBoardingRoute = "/onBoarding";
 }
 
 class RouteGenerator {
@@ -31,6 +33,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const MainView());
       case Routes.storeDetailsRoute:
         return MaterialPageRoute(builder: (_) => const StoreDetailsView());
+      case Routes.onBoardingRoute:
+        return MaterialPageRoute(builder: (_) => const OnBoardingView());
       default:
         return unDefinedRoute();
     }
