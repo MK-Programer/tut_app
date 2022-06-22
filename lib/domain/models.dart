@@ -19,7 +19,7 @@ class SliderViewObject {
 class Customer {
   String id;
   String name;
-  String numOfNotifications;
+  int numOfNotifications;
 
   Customer(this.id, this.name, this.numOfNotifications);
 }
@@ -33,8 +33,8 @@ class Contacts {
 }
 
 class Authentication {
-  Customer customer;
-  Contacts contacts;
+  Customer? customer;
+  Contacts? contacts;
 
   Authentication(this.customer, this.contacts);
 }
