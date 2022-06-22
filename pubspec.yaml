@@ -28,6 +28,10 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   flutter_svg: ^1.0.3
+  retrofit: ^3.0.1+1
+  analyzer: ^3.3.1
+  dio: ^4.0.4
+  json_serializable: ^6.1.4
   flutter:
     sdk: flutter
 
@@ -37,6 +41,8 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
+  retrofit_generator: ^4.0.1
+  build_runner: ^2.1.7
   flutter_test:
     sdk: flutter
 
