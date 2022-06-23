@@ -18,18 +18,18 @@ class _AppSerivceClient implements AppSerivceClient {
   String? baseUrl;
 
   @override
-  Future<AuthenticatorResponse> login(email, password) async {
+  Future<AuthenticationResponse> login(email, password) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = {'email': email, 'password': password};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<AuthenticatorResponse>(
+        _setStreamType<AuthenticationResponse>(
             Options(method: 'POST', headers: _headers, extra: _extra)
                 .compose(_dio.options, '/customers/login',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = AuthenticatorResponse.fromJson(_result.data!);
+    final value = AuthenticationResponse.fromJson(_result.data!);
     return value;
   }
 

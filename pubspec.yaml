@@ -32,6 +32,7 @@ dependencies:
   analyzer: ^3.3.1
   dio: ^4.0.4
   json_serializable: ^6.1.4
+  dartz: ^0.10.1
   flutter:
     sdk: flutter
 

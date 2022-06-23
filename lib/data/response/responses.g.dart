@@ -6,10 +6,12 @@ part of 'responses.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+// ignore: unused_element
 BaseResponse _$BaseResponseFromJson(Map<String, dynamic> json) => BaseResponse()
   ..status = json['status'] as int?
   ..message = json['message'] as String?;
 
+// ignore: unused_element
 Map<String, dynamic> _$BaseResponseToJson(BaseResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
@@ -34,7 +36,7 @@ ContactsResponse _$ContactsResponseFromJson(Map<String, dynamic> json) =>
     ContactsResponse(
       json['phone'] as String?,
       json['email'] as String?,
-      json['link'] as int?,
+      json['link'] as String?,
     );
 
 Map<String, dynamic> _$ContactsResponseToJson(ContactsResponse instance) =>
