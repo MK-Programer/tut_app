@@ -1,6 +1,6 @@
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/constants.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/data/response/responses.dart';
-import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/models.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/model/models.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/extensions.dart';
 
 extension CustomerResposeMapper on CustomerResponse? {
