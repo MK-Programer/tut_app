@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/data/data_source/remote_data_source.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/data/mapper/mapper.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/data/network/error_handler.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/data/network/network_info.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/model/models.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/data/network/requests.dart';
@@ -18,22 +19,27 @@ class RepositoryImpl implements Repository {
   Future<Either<Failure, Authentication>> login(
       LoginRequest loginRequest) async {
     if (await _networkInfo.isConnected) {
-      // its connected to internet , its safe to call API
-      final response = await _remoteDataSource.login(loginRequest);
-      if (response.status == 0) {
-        // success
-        // return either right
-        // return data
-        return Right(response.toDomain());
-      } else {
-        // failure -- business error
-        // return either left
-        return Left(Failure(409, response.message ?? "business error message"));
+      try {
+        // its connected to internet , its safe to call API
+        final response = await _remoteDataSource.login(loginRequest);
+        if (response.status == ApiInternalStatus.SUCCESS) {
+          // success
+          // return either right
+          // return data
+          return Right(response.toDomain());
+        } else {
+          // failure -- return business error
+          // return either left
+          return Left(Failure(ApiInternalStatus.FAILURE,
+              response.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
       }
     } else {
       // return internet connection error
       // return either left
-      return Left(Failure(501, "please check your internet connection"));
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
 }
