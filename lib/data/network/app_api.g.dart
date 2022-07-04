@@ -19,14 +19,10 @@ class _AppSerivceClient implements AppSerivceClient {
 
   @override
   Future<AuthenticationResponse> login(email, password) async {
-    // ignore: no_leading_underscores_for_local_identifiers
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    // ignore: no_leading_underscores_for_local_identifiers
     final _headers = <String, dynamic>{};
-    // ignore: no_leading_underscores_for_local_identifiers
     final _data = {'email': email, 'password': password};
-    // ignore: no_leading_underscores_for_local_identifiers
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AuthenticationResponse>(
             Options(method: 'POST', headers: _headers, extra: _extra)
