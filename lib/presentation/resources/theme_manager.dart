@@ -101,7 +101,7 @@ ThemeData getApplicationTheme() {
       // enabled border style
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: ColorManager.primary,
+          color: ColorManager.grey,
           width: AppSize.s1_5,
         ),
         borderRadius: const BorderRadius.all(
@@ -113,7 +113,7 @@ ThemeData getApplicationTheme() {
       // focused border style
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: ColorManager.grey,
+          color: ColorManager.primary,
           width: AppSize.s1_5,
         ),
         borderRadius: const BorderRadius.all(
