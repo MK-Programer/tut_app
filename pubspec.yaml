@@ -43,6 +43,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   internet_connection_checker: ^0.0.1+4
   pretty_dio_logger: ^1.1.1
+  shared_preferences: ^2.0.15
 dev_dependencies:
   retrofit_generator: ^4.0.1
   build_runner: ^2.1.7
