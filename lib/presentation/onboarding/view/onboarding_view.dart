@@ -55,16 +55,18 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 statusBarBrightness: Brightness.dark,
               ),
             ),
-            body: PageView.builder(
-                controller: _pageController,
-                itemCount: sliderViewObject.numberOfSlides,
-                onPageChanged: (index) {
-                  _viewModel.onPageChanged(index);
-                },
-                itemBuilder: (context, index) {
-                  //! make the page scrollable using SingleChildScrollView() Widget
-                  return OnBoardingPage(sliderViewObject.sliderObject);
-                }),
+            body: SingleChildScrollView(
+              child: PageView.builder(
+                  controller: _pageController,
+                  itemCount: sliderViewObject.numberOfSlides,
+                  onPageChanged: (index) {
+                    _viewModel.onPageChanged(index);
+                  },
+                  itemBuilder: (context, index) {
+                    //! make the page scrollable using SingleChildScrollView() Widget
+                    return OnBoardingPage(sliderViewObject.sliderObject);
+                  }),
+            ),
             bottomSheet: Container(
               color: ColorManager.white,
               child: Column(
