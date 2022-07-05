@@ -23,4 +23,6 @@ class AppStrings {
   static const registerText = "Not a member ? Signup";
   static const userNameError = "Please enter your user name";
   static const passwordError = "Please enter your password";
+
+  static const loading = "Loading...";
 }
