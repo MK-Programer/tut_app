@@ -15,9 +15,8 @@ class LoginViewModel extends BaseViewModel
       StreamController<void>.broadcast();
 
   var loginObject = LoginObject("", "");
-  // LoginUseCase _loginUseCase;
-  LoginViewModel();
-  // LoginViewModel(this._loginUseCase);
+  final LoginUseCase _loginUseCase;
+  LoginViewModel(this._loginUseCase);
 
   // inputs
   @override
@@ -41,18 +40,18 @@ class LoginViewModel extends BaseViewModel
 
   @override
   login() async {
-    // (await _loginUseCase.execute(
-    //         LoginUseCaseInput(loginObject.userName, loginObject.password)))
-    //     .fold(
-    //   (failure) => {
-    //     // left -> failure
-    //     print("failure message: ${failure.message}")
-    //   },
-    //   (data) => {
-    //     // right -> data (success)
-    //     print("customer data: ${data.customer?.name}")
-    //   },
-    // );
+    (await _loginUseCase.execute(
+            LoginUseCaseInput(loginObject.userName, loginObject.password)))
+        .fold(
+      (failure) => {
+        // left -> failure
+        print("failure message: ${failure.message}")
+      },
+      (data) => {
+        // right -> data (success)
+        print("customer data: ${data.customer?.name}")
+      },
+    );
   }
 
   @override

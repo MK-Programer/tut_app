@@ -50,10 +50,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             appBar: AppBar(
               backgroundColor: ColorManager.white,
               elevation: AppSize.s0,
-              systemOverlayStyle: SystemUiOverlayStyle(
-                statusBarColor: ColorManager.white,
-                statusBarBrightness: Brightness.dark,
-              ),
             ),
             body: PageView.builder(
                 controller: _pageController,
