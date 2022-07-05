@@ -25,4 +25,6 @@ class AppStrings {
   static const passwordError = "Please enter your password";
 
   static const loading = "Loading...";
+  static const retryAgain = "Retry again";
+  static const ok = "ok";
 }

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/color_manager.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/font_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/styles_manager.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/values_manager.dart';
 
 enum StateRendererType {
   // POP STATES (DIALOG)
@@ -43,9 +47,20 @@ class StateRenderer extends StatelessWidget {
       case StateRendererType.popupErrorState:
 
       case StateRendererType.fullScreenLoadingState:
-
+        return _getItemsColumn(
+          [
+            _getAnimatedImage(),
+            _getMessage(message),
+          ],
+        );
       case StateRendererType.fullScreenErrorState:
-
+        return _getItemsColumn(
+          [
+            _getAnimatedImage(),
+            _getMessage(message),
+            _getRetryButton(AppStrings.retryAgain),
+          ],
+        );
       case StateRendererType.fullScreenEmptyState:
 
       case StateRendererType.contentState:
@@ -57,6 +72,33 @@ class StateRenderer extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: children,
+    );
+  }
+
+  Widget _getAnimatedImage() {
+    return SizedBox(
+      height: AppSize.s100,
+      width: AppSize.s100,
+      child: Container(), // todo add json image here
+    );
+  }
+
+  Widget _getMessage(String message) {
+    return Text(
+      message,
+      style: getRegularStyle(
+        color: ColorManager.black,
+        fontSize: FontSize.s18,
+      ),
+    );
+  }
+
+  Widget _getRetryButton(String buttonTitle) {
+    return ElevatedButton(
+      onPressed: () {},
+      child: Text(
+        buttonTitle,
+      ),
     );
   }
 }
