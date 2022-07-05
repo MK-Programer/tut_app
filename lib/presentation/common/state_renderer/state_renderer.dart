@@ -37,10 +37,10 @@ class StateRenderer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return _getStateWidget(context);
   }
 
-  Widget _getStateWidget() {
+  Widget _getStateWidget(BuildContext context) {
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
 
@@ -58,7 +58,7 @@ class StateRenderer extends StatelessWidget {
           [
             _getAnimatedImage(),
             _getMessage(message),
-            _getRetryButton(AppStrings.retryAgain),
+            _getRetryButton(context, AppStrings.retryAgain),
           ],
         );
       case StateRendererType.fullScreenEmptyState:
@@ -84,20 +84,40 @@ class StateRenderer extends StatelessWidget {
   }
 
   Widget _getMessage(String message) {
-    return Text(
-      message,
-      style: getRegularStyle(
-        color: ColorManager.black,
-        fontSize: FontSize.s18,
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(AppPadding.p8),
+        child: Text(
+          message,
+          style: getRegularStyle(
+            color: ColorManager.black,
+            fontSize: FontSize.s18,
+          ),
+        ),
       ),
     );
   }
 
-  Widget _getRetryButton(String buttonTitle) {
-    return ElevatedButton(
-      onPressed: () {},
-      child: Text(
-        buttonTitle,
+  Widget _getRetryButton(BuildContext context, String buttonTitle) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(AppPadding.p18),
+        child: SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () {
+              if (stateRendererType == StateRendererType.fullScreenErrorState) {
+                // call retry function
+                retryActionFunction.call()
+              } else { // popup error state
+                Navigator.of(context).pop();
+              }
+            },
+            child: Text(
+              buttonTitle,
+            ),
+          ),
+        ),
       ),
     );
   }
