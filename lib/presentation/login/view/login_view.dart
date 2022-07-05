@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/app/di.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/data/data_source/remote_data_source.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/data/repository/repository_impl.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/repository/repository.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/login_usecase.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/login/viewmodel/login_viewmodel.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/assets_manager.dart';
@@ -16,8 +20,8 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  LoginUseCase _loginUseCase = LoginUseCase(_repository)
-  final LoginViewModel _loginViewModel = LoginViewModel(_loginUseCase);
+  final LoginViewModel _loginViewModel = instance<LoginViewModel>();
+
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
