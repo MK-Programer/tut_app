@@ -43,82 +43,112 @@ class StateRenderer extends StatelessWidget {
   Widget _getStateWidget(BuildContext context) {
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
+        return _getPopUpDialog(context);
+              case StateRendererType.popupErrorState:
+        
+              case StateRendererType.fullScreenLoadingState:
+                return _getItemsColumn(
+                  [
+                    _getAnimatedImage(),
+                    _getMessage(message),
+                  ],
+                );
+              case StateRendererType.fullScreenErrorState:
+                return _getItemsColumn(
+                  [
+                    _getAnimatedImage(),
+                    _getMessage(message),
+                    _getRetryButton(context, AppStrings.retryAgain),
+                  ],
+                );
+              case StateRendererType.fullScreenEmptyState:
+        
+              case StateRendererType.contentState:
+            }
+          }
 
-      case StateRendererType.popupErrorState:
+          Widget _getPopUpDialog(BuildContext context) {
+            return Dialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppSize.s14,),
+              ),
+              elevation: AppSize.s1_5,
+              backgroundColor: Colors.transparent,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: ColorManager.white,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(AppSize.s14,),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26,
+                    ),
+                  ],
+                ),
+                child: _getDialogContent(context),
+              ),
+            );
+            
+          }
 
-      case StateRendererType.fullScreenLoadingState:
-        return _getItemsColumn(
-          [
-            _getAnimatedImage(),
-            _getMessage(message),
-          ],
-        );
-      case StateRendererType.fullScreenErrorState:
-        return _getItemsColumn(
-          [
-            _getAnimatedImage(),
-            _getMessage(message),
-            _getRetryButton(context, AppStrings.retryAgain),
-          ],
-        );
-      case StateRendererType.fullScreenEmptyState:
+          Widget _getDialogContent(BuildContext buildContext){
 
-      case StateRendererType.contentState:
-    }
-  }
-
-  Widget _getItemsColumn(List<Widget> children) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: children,
-    );
-  }
-
-  Widget _getAnimatedImage() {
-    return SizedBox(
-      height: AppSize.s100,
-      width: AppSize.s100,
-      child: Container(), // todo add json image here
-    );
-  }
-
-  Widget _getMessage(String message) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(AppPadding.p8),
-        child: Text(
-          message,
-          style: getRegularStyle(
-            color: ColorManager.black,
-            fontSize: FontSize.s18,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _getRetryButton(BuildContext context, String buttonTitle) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(AppPadding.p18),
-        child: SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () {
-              if (stateRendererType == StateRendererType.fullScreenErrorState) {
-                // call retry function
-                retryActionFunction.call()
-              } else { // popup error state
-                Navigator.of(context).pop();
-              }
-            },
-            child: Text(
-              buttonTitle,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+          }
+        
+          Widget _getItemsColumn(List<Widget> children) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: children,
+            );
+          }
+        
+          Widget _getAnimatedImage() {
+            return SizedBox(
+              height: AppSize.s100,
+              width: AppSize.s100,
+              child: Container(), // todo add json image here
+            );
+          }
+        
+          Widget _getMessage(String message) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(AppPadding.p8),
+                child: Text(
+                  message,
+                  style: getRegularStyle(
+                    color: ColorManager.black,
+                    fontSize: FontSize.s18,
+                  ),
+                ),
+              ),
+            );
+          }
+        
+          Widget _getRetryButton(BuildContext context, String buttonTitle) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(AppPadding.p18),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (stateRendererType == StateRendererType.fullScreenErrorState) {
+                        // call retry function
+                        retryActionFunction.call()
+                      } else { // popup error state
+                        Navigator.of(context).pop();
+                      }
+                    },
+                    child: Text(
+                      buttonTitle,
+                    ),
+                  ),
+                ),
+              ),
+            );
+          }
+        
+  
 }
