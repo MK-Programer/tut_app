@@ -6,6 +6,8 @@ import 'package:flutter_advanced_clean_architecture_with_mvvm/data/network/dio_f
 import 'package:flutter_advanced_clean_architecture_with_mvvm/data/network/network_info.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/data/repository/repository_impl.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/repository/repository.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/login_usecase.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/login/viewmodel/login_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,4 +45,9 @@ Future<void> initAppModule() async {
       () => RepositoryImpl(instance(), instance()));
 }
 
-Future<void> initLoginModule() async {}
+initLoginModule() {
+  if (!GetIt.I.isRegistered<LoginUseCase>()) {
+    instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
+    instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
+  }
+}
