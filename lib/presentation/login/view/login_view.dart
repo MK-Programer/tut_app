@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/login/viewmodel/login_viewmodel.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/assets_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/color_manager.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/values_manager.dart';
 
@@ -40,9 +41,9 @@ class _LoginViewState extends State<LoginView> {
 
   Widget _getContentWidget() {
     return Scaffold(
+      backgroundColor: ColorManager.white,
       body: Container(
         padding: const EdgeInsets.only(top: AppPadding.p100),
-        color: ColorManager.white,
         child: SingleChildScrollView(
           child: Form(
             key: _formKey,
@@ -116,17 +117,59 @@ class _LoginViewState extends State<LoginView> {
                   child: StreamBuilder<bool>(
                     stream: _loginViewModel.outAreAllInputsValid,
                     builder: (context, snapshot) {
-                      return ElevatedButton(
-                        onPressed: (snapshot.data ?? false)
-                            ? () {
-                                _loginViewModel.login();
-                              }
-                            : null,
-                        child: const Text(
-                          AppStrings.login,
+                      return SizedBox(
+                        width: double.infinity,
+                        height: AppSize.s40,
+                        child: ElevatedButton(
+                          onPressed: (snapshot.data ?? false)
+                              ? () {
+                                  _loginViewModel.login();
+                                }
+                              : null,
+                          child: const Text(
+                            AppStrings.login,
+                          ),
                         ),
                       );
                     },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: AppPadding.p8,
+                    left: AppPadding.p28,
+                    right: AppPadding.p28,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(
+                            context,
+                            Routes.forgetPasswordhRoute,
+                          );
+                        },
+                        child: Text(
+                          AppStrings.forgetPassword,
+                          style: Theme.of(context).textTheme.titleMedium,
+                          textAlign: TextAlign.end,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(
+                            context,
+                            Routes.registerRoute,
+                          );
+                        },
+                        child: Text(
+                          AppStrings.registerText,
+                          style: Theme.of(context).textTheme.titleMedium,
+                          textAlign: TextAlign.end,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

@@ -63,7 +63,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 },
                 itemBuilder: (context, index) {
                   //! make the page scrollable using SingleChildScrollView() Widget
-                  return OnBoardingPage(sliderViewObject.sliderObject);
+                  return SingleChildScrollView(
+                    child: OnBoardingPage(sliderViewObject.sliderObject),
+                  );
                 }),
             bottomSheet: Container(
               color: ColorManager.white,
