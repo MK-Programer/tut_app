@@ -1,4 +1,4 @@
-# flutter_advanced_clean_architecture_with_mvvm
+# tut app
 
 A new Flutter project.
 
