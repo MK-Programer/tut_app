@@ -5,4 +5,5 @@ import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/model/model
 
 abstract class Repository {
   Future<Either<Failure, Authentication>> login(LoginRequest loginRequest);
+  Future<Either<Failure, String>> forgetPassword(String email);
 }

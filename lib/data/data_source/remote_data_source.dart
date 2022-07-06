@@ -4,6 +4,7 @@ import 'package:flutter_advanced_clean_architecture_with_mvvm/data/response/resp
 
 abstract class RemoteDataSource {
   Future<AuthenticationResponse> login(LoginRequest loginRequest);
+  Future<ForgetPasswordResponse> forgetPassword(String email);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -15,5 +16,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<AuthenticationResponse> login(LoginRequest loginRequest) async {
     return await _appSerivceClient.login(
         loginRequest.email, loginRequest.password);
+  }
+
+  @override
+  Future<ForgetPasswordResponse> forgetPassword(String email) async {
+    return await _appSerivceClient.forgetPassword(email);
   }
 }

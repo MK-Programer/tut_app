@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/di.dart';
-import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/forget_password/forget_password.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/forget_password/view/forget_password.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/login/view/login_view.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/main_view.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/onboarding/view/onboarding_view.dart';
@@ -32,6 +32,7 @@ class RouteGenerator {
       case Routes.registerRoute:
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.forgetPasswordhRoute:
+        initForgotPasswordModule();
         return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
       case Routes.mainRoute:
         return MaterialPageRoute(builder: (_) => const MainView());
