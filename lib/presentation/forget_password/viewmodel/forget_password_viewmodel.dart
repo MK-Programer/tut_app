@@ -13,9 +13,9 @@ class ForgetPasswordViewModel extends BaseViewModel
   final StreamController _isAllInputValidStreamController =
       StreamController<void>.broadcast();
 
-  final ForgetPasswordUseCase _forgotPasswordUseCase;
+  final ForgetPasswordUseCase _forgetPasswordUseCase;
 
-  ForgetPasswordViewModel(this._forgotPasswordUseCase);
+  ForgetPasswordViewModel(this._forgetPasswordUseCase);
 
   var email = "";
 
@@ -28,13 +28,25 @@ class ForgetPasswordViewModel extends BaseViewModel
   @override
   forgotPassword() async {
     inputState.add(
-        LoadingState(stateRendererType: StateRendererType.popupLoadingState));
-    (await _forgotPasswordUseCase.execute(email)).fold((failure) {
-      inputState
-          .add(ErrorState(StateRendererType.popupErrorState, failure.message));
-    }, (supportMessage) {
-      inputState.add(ContentState());
-    });
+      LoadingState(
+        stateRendererType: StateRendererType.popupLoadingState,
+      ),
+    );
+    (await _forgetPasswordUseCase.execute(email)).fold(
+      (failure) {
+        inputState.add(
+          ErrorState(
+            StateRendererType.popupErrorState,
+            failure.message,
+          ),
+        );
+      },
+      (supportMessage) {
+        inputState.add(
+          ContentState(),
+        );
+      },
+    );
   }
 
   @override
@@ -58,13 +70,17 @@ class ForgetPasswordViewModel extends BaseViewModel
   }
 
   @override
-  Stream<bool> get outputIsEmailValid =>
-      _emailStreamController.stream.map((email) => isEmailValid(email));
+  Stream<bool> get outputIsEmailValid => _emailStreamController.stream.map(
+        (email) => isEmailValid(
+          email,
+        ),
+      );
 
   @override
   Stream<bool> get outputIsAllInputValid =>
-      _isAllInputValidStreamController.stream
-          .map((isAllInputValid) => _isAllInputValid());
+      _isAllInputValidStreamController.stream.map(
+        (isAllInputValid) => _isAllInputValid(),
+      );
 
   _isAllInputValid() {
     return isEmailValid(email);
