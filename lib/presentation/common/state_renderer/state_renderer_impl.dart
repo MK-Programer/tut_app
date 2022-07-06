@@ -1,3 +1,4 @@
+import 'package:flutter_advanced_clean_architecture_with_mvvm/app/constants.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/common/state_renderer/state_renderer.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
 
@@ -19,4 +20,42 @@ class LoadingState extends FlowState {
 
   @override
   StateRendererType getStateRendereType() => stateRendererType;
+}
+
+// error state (POPUP, FULLSCREEN)
+class ErrorState extends FlowState {
+  StateRendererType stateRendererType;
+  String message;
+
+  ErrorState(this.stateRendererType, this.message);
+
+  @override
+  String getMessage() => message;
+
+  @override
+  StateRendererType getStateRendereType() => stateRendererType;
+}
+
+// content state
+class ContentState extends FlowState {
+  ContentState();
+
+  @override
+  String getMessage() => Constants.empty;
+
+  @override
+  StateRendererType getStateRendereType() => StateRendererType.contentState;
+}
+
+// empty state
+class EmptyState extends FlowState {
+  String message;
+  EmptyState(this.message);
+
+  @override
+  String getMessage() => message;
+
+  @override
+  StateRendererType getStateRendereType() =>
+      StateRendererType.fullScreenEmptyState;
 }
