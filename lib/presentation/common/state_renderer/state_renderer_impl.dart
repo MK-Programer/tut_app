@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/constants.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/common/state_renderer/state_renderer.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
@@ -58,4 +59,32 @@ class EmptyState extends FlowState {
   @override
   StateRendererType getStateRendereType() =>
       StateRendererType.fullScreenEmptyState;
+}
+
+extension FlowStateExtension on FlowState {
+  Widget getScreenWidget(BuildContext context, Widget contentScreenWidget,
+      Function retryActionFunction) {
+    switch (runtimeType) {
+      case LoadingState:
+        {
+          break;
+        }
+      case ErrorState:
+        {
+          break;
+        }
+      case EmptyState:
+        {
+          break;
+        }
+      case ContentState:
+        {
+          break;
+        }
+      default:
+        {
+          break;
+        }
+    }
+  }
 }
