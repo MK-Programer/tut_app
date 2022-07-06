@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/di.dart';
-import 'package:flutter_advanced_clean_architecture_with_mvvm/data/data_source/remote_data_source.dart';
-import 'package:flutter_advanced_clean_architecture_with_mvvm/data/repository/repository_impl.dart';
-import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/repository/repository.dart';
-import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/login_usecase.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/login/viewmodel/login_viewmodel.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/assets_manager.dart';

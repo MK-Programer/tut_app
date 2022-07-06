@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter_advanced_clean_architecture_with_mvvm/app/app_prefs.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/app/di.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/login_usecase.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/base/baseviewmodel.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/common/freezed_data_classes.dart';
@@ -22,6 +24,8 @@ class LoginViewModel extends BaseViewModel
   var loginObject = LoginObject("", "");
   final LoginUseCase _loginUseCase;
   LoginViewModel(this._loginUseCase);
+
+  final AppPreferences _appPreferences = instance<AppPreferences>();
 
   // inputs
   @override
@@ -73,6 +77,7 @@ class LoginViewModel extends BaseViewModel
         inputState.add(
           ContentState(),
         );
+        _appPreferences.setUserLoggedIn();
         // navigate to main screen
         isUserLoggedinsuccessfullyStreamController.add(
           true,
