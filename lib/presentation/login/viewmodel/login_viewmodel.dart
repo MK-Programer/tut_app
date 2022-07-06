@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/login_usecase.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/base/baseviewmodel.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/common/freezed_data_classes.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
@@ -21,13 +22,17 @@ class LoginViewModel extends BaseViewModel
   // inputs
   @override
   void dispose() {
+    super.dispose();
     _userNameStreamController.close();
     _passwordStreamController.close();
     _areAllInputsValidStreamController.close();
   }
 
   @override
-  void start() {}
+  void start() {
+    // view model should tell view please show content state
+    inputState.add(ContentState());
+  }
 
   @override
   Sink get inputPassword => _passwordStreamController.sink;
