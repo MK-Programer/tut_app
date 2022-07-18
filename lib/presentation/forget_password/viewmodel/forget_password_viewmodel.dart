@@ -43,7 +43,9 @@ class ForgetPasswordViewModel extends BaseViewModel
       },
       (supportMessage) {
         inputState.add(
-          ContentState(),
+          SuccessState(
+            supportMessage,
+          ),
         );
       },
     );
