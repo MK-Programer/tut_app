@@ -43,6 +43,68 @@ class RegisterViewModel extends BaseViewModel
   Sink get inputUserName => userNameStreamController.sink;
 
   @override
+  setUserName(String userName) {
+    if (_isUserNameValid(userName)) {
+      // update register view object
+      registerObject = registerObject.copyWith(userName: userName);
+    } else {
+      // reset username value in register view object
+      registerObject = registerObject.copyWith(userName: "");
+    }
+  }
+
+  @override
+  register() {
+    throw UnimplementedError();
+  }
+
+  @override
+  setCountryCode(String countryCode) {
+    if (countryCode.isNotEmpty) {
+      registerObject = registerObject.copyWith(countryMobileCode: countryCode);
+    } else {
+      registerObject = registerObject.copyWith(countryMobileCode: "");
+    }
+  }
+
+  @override
+  setEmail(String email) {
+    if (isEmailValid(email)) {
+      registerObject = registerObject.copyWith(email: email);
+    } else {
+      registerObject = registerObject.copyWith(email: "");
+    }
+  }
+
+  @override
+  setMobileNumber(String mobileNumber) {
+    if (_isMobileNumberValid(mobileNumber)) {
+      registerObject = registerObject.copyWith(mobileNumber: mobileNumber);
+    } else {
+      registerObject = registerObject.copyWith(mobileNumber: "");
+    }
+  }
+
+  @override
+  setPassword(String password) {
+    if (_isPasswordValid(password)) {
+      registerObject = registerObject.copyWith(password: password);
+    } else {
+      registerObject = registerObject.copyWith(password: "");
+    }
+  }
+
+  @override
+  setProfilePicture(File profilePicture) {
+    if (profilePicture.path.isNotEmpty) {
+      registerObject =
+          registerObject.copyWith(profilePicture: profilePicture.path);
+    } else {
+      registerObject = registerObject.copyWith(profilePicture: "");
+    }
+  }
+
+  @override
   void start() {}
 
   @override
@@ -115,6 +177,15 @@ abstract class RegisterViewModelInput {
   Sink get inputEmail;
   Sink get inputPassword;
   Sink get inputProfilePicture;
+
+  register();
+
+  setUserName(String userName);
+  setMobileNumber(String mobileNumber);
+  setCountryCode(String countryCode);
+  setEmail(String email);
+  setPassword(String password);
+  setProfilePicture(File profilePicture);
 }
 
 abstract class RegisterViewModelOutput {
