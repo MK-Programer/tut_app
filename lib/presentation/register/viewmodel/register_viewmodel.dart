@@ -5,6 +5,8 @@ import 'package:flutter_advanced_clean_architecture_with_mvvm/app/functions.dart
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/register_usecase.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/base/baseviewmodel.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/common/freezed_data_classes.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/common/state_renderer/state_renderer.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
 
 class RegisterViewModel extends BaseViewModel
@@ -57,8 +59,43 @@ class RegisterViewModel extends BaseViewModel
   Sink get inputAllInputsValid => areAllInputsVaildStreamController.sink;
 
   @override
-  register() {
-    throw UnimplementedError();
+  register() async {
+    inputState.add(
+      LoadingState(
+        stateRendererType: StateRendererType.popupLoadingState,
+      ),
+    );
+    (await _registerUseCase.execute(RegisterUseCaseInput(
+      registerObject.userName,
+      registerObject.countryMobileCode,
+      registerObject.mobileNumber,
+      registerObject.email,
+      registerObject.password,
+      registerObject.profilePicture,
+    )))
+        .fold(
+      (failure) => {
+        // left -> failure
+        inputState.add(
+          ErrorState(
+            StateRendererType.popupErrorState,
+            failure.message,
+          ),
+        ),
+      },
+      (data) {
+        // right -> data (success)
+        // content
+        inputState.add(
+          ContentState(),
+        );
+        // _appPreferences.setUserLoggedIn();
+        // navigate to main screen
+        // isUserLoggedinsuccessfullyStreamController.add(
+        //   true,
+        // );
+      },
+    );
   }
 
   @override
