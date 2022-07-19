@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/register_usecase.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/base/baseviewmodel.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
 
-class RegisterViewModel extends BaseViewModel {
+class RegisterViewModel extends BaseViewModel
+    with RegisterViewModelInput, RegisterViewModelOutput {
   StreamController userNameStreamController =
       StreamController<String>.broadcast();
   StreamController mobileNumberStreamController =
@@ -15,6 +18,26 @@ class RegisterViewModel extends BaseViewModel {
       StreamController<File>.broadcast();
   StreamController areAllInputsVaildStreamController =
       StreamController<void>.broadcast();
+
+  final RegisterUseCase _registerUseCase;
+
+  RegisterViewModel(this._registerUseCase);
+
+  // inputs
+  @override
+  Sink get inputEmail => emailStreamController.sink;
+
+  @override
+  Sink get inputMobileNumber => mobileNumberStreamController.sink;
+
+  @override
+  Sink get inputPassword => passwordStreamController.sink;
+
+  @override
+  Sink get inputProfilePicture => profilePictureStreamController.sink;
+
+  @override
+  Sink get inputUserName => userNameStreamController.sink;
 
   @override
   void start() {}
@@ -28,6 +51,45 @@ class RegisterViewModel extends BaseViewModel {
     profilePictureStreamController.close();
     areAllInputsVaildStreamController.close();
     super.dispose();
+  }
+
+  // outputs
+  @override
+  Stream<bool> get outputIsUserNameValid => userNameStreamController.stream
+      .map((userName) => _isUserNameValid(userName));
+  @override
+  Stream<String?> get outputErrorUserName => outputIsUserNameValid.map(
+        (isUserName) => isUserName ? null : AppStrings.userNameInvalid,
+      );
+
+  @override
+  // TODO: implement outputIsEmailValid
+  Stream<bool> get outputIsEmailValid => throw UnimplementedError();
+  @override
+  // TODO: implement outputErrorEmail
+  Stream<String?> get outputErrorEmail => throw UnimplementedError();
+
+  @override
+  // TODO: implement outputIsMobileNumberValid
+  Stream<bool> get outputIsMobileNumberValid => throw UnimplementedError();
+  @override
+  // TODO: implement outputErrorMobileNumber
+  Stream<String?> get outputErrorMobileNumber => throw UnimplementedError();
+
+  @override
+  // TODO: implement outputIsPasswordValid
+  Stream<bool> get outputIsPasswordValid => throw UnimplementedError();
+  @override
+  // TODO: implement outputErrorPassword
+  Stream<String?> get outputErrorPassword => throw UnimplementedError();
+
+  @override
+  // TODO: implement outputIsProfilePictureValid
+  Stream<bool> get outputIsProfilePictureValid => throw UnimplementedError();
+
+  // private functions
+  bool _isUserNameValid(String userName) {
+    return userName.length > 8;
   }
 }
 

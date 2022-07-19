@@ -33,4 +33,6 @@ class AppStrings {
   static const String resetPassword = "Reset Password";
 
   static const String success = "Success";
+
+  static const String userNameInvalid = "User name should be at least 8 chars";
 }
