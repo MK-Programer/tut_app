@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/di.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/register/viewmodel/register_viewmodel.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/assets_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/color_manager.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/routes_manager.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/values_manager.dart';
 
 class RegisterView extends StatefulWidget {
@@ -76,7 +79,120 @@ class _RegisterViewState extends State<RegisterView> {
   }
 
   Widget _getContentWidget() {
-    return Container();
+    return Container(
+      padding: const EdgeInsets.only(top: AppPadding.p100),
+      child: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              const Center(
+                child: Image(
+                  image: AssetImage(
+                    ImageAssets.splashLogo,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.s28,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: AppPadding.p28,
+                  right: AppPadding.p28,
+                ),
+                child: StreamBuilder<String?>(
+                  stream: _registerViewModel.outputErrorUserName,
+                  builder: (context, snapshot) {
+                    return TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _userNameEditingController,
+                      decoration: InputDecoration(
+                        hintText: AppStrings.userName,
+                        labelText: AppStrings.userName,
+                        errorText: snapshot.data,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.s28,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: AppPadding.p28,
+                  right: AppPadding.p28,
+                ),
+                child: StreamBuilder<String?>(
+                  stream: _registerViewModel.outputErrorPassword,
+                  builder: (context, snapshot) {
+                    return TextFormField(
+                      keyboardType: TextInputType.visiblePassword,
+                      controller: _passwordEditingController,
+                      decoration: InputDecoration(
+                        hintText: AppStrings.password,
+                        labelText: AppStrings.password,
+                        errorText: snapshot.data,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.s28,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: AppPadding.p28,
+                  right: AppPadding.p28,
+                ),
+                child: StreamBuilder<bool>(
+                  stream: _registerViewModel.outputAreAllInputsValid,
+                  builder: (context, snapshot) {
+                    return SizedBox(
+                      width: double.infinity,
+                      height: AppSize.s40,
+                      child: ElevatedButton(
+                        onPressed: (snapshot.data ?? false)
+                            ? () {
+                                _registerViewModel.register();
+                              }
+                            : null,
+                        child: const Text(
+                          AppStrings.register,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: AppPadding.p8,
+                  left: AppPadding.p28,
+                  right: AppPadding.p28,
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    // Navigator.pushReplacementNamed(
+                    //   context,
+                    //   Routes.forgetPasswordhRoute,
+                    // );
+                  },
+                  child: Text(
+                    AppStrings.alreadyHaveAccount,
+                    style: Theme.of(context).textTheme.titleMedium,
+                    textAlign: TextAlign.end,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    ;
   }
 
   @override
