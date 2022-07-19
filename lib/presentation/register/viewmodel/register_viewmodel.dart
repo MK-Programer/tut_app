@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/functions.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/register_usecase.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/base/baseviewmodel.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/common/freezed_data_classes.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
 
 class RegisterViewModel extends BaseViewModel
@@ -21,6 +22,7 @@ class RegisterViewModel extends BaseViewModel
       StreamController<void>.broadcast();
 
   final RegisterUseCase _registerUseCase;
+  var registerObject = RegisterObject("", "", "", "", "", "");
 
   RegisterViewModel(this._registerUseCase);
 
