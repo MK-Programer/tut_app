@@ -54,6 +54,9 @@ class RegisterViewModel extends BaseViewModel
   }
 
   @override
+  Sink get inputAllInputsValid => areAllInputsVaildStreamController.sink;
+
+  @override
   register() {
     throw UnimplementedError();
   }
@@ -65,6 +68,7 @@ class RegisterViewModel extends BaseViewModel
     } else {
       registerObject = registerObject.copyWith(countryMobileCode: "");
     }
+    validate();
   }
 
   @override
@@ -74,6 +78,7 @@ class RegisterViewModel extends BaseViewModel
     } else {
       registerObject = registerObject.copyWith(email: "");
     }
+    validate();
   }
 
   @override
@@ -83,6 +88,7 @@ class RegisterViewModel extends BaseViewModel
     } else {
       registerObject = registerObject.copyWith(mobileNumber: "");
     }
+    validate();
   }
 
   @override
@@ -92,6 +98,7 @@ class RegisterViewModel extends BaseViewModel
     } else {
       registerObject = registerObject.copyWith(password: "");
     }
+    validate();
   }
 
   @override
@@ -102,6 +109,7 @@ class RegisterViewModel extends BaseViewModel
     } else {
       registerObject = registerObject.copyWith(profilePicture: "");
     }
+    validate();
   }
 
   @override
@@ -157,6 +165,10 @@ class RegisterViewModel extends BaseViewModel
   Stream<File> get outputIsProfilePictureValid =>
       profilePictureStreamController.stream.map((file) => file);
 
+  @override
+  Stream<bool> get outputAreAllInputsValid =>
+      areAllInputsVaildStreamController.stream.map((_) => _areAllInputsValid());
+
   // private functions
   bool _isUserNameValid(String userName) {
     return userName.length >= 8;
@@ -169,6 +181,19 @@ class RegisterViewModel extends BaseViewModel
   bool _isPasswordValid(String password) {
     return password.length >= 6;
   }
+
+  bool _areAllInputsValid() {
+    return registerObject.countryMobileCode.isNotEmpty &&
+        registerObject.mobileNumber.isNotEmpty &&
+        registerObject.userName.isNotEmpty &&
+        registerObject.email.isNotEmpty &&
+        registerObject.password.isNotEmpty &&
+        registerObject.profilePicture.isNotEmpty;
+  }
+
+  validate() {
+    inputAllInputsValid.add(null);
+  }
 }
 
 abstract class RegisterViewModelInput {
@@ -177,7 +202,7 @@ abstract class RegisterViewModelInput {
   Sink get inputEmail;
   Sink get inputPassword;
   Sink get inputProfilePicture;
-
+  Sink get inputAllInputsValid;
   register();
 
   setUserName(String userName);
@@ -202,4 +227,5 @@ abstract class RegisterViewModelOutput {
   Stream<String?> get outputErrorPassword;
 
   Stream<File> get outputIsProfilePictureValid;
+  Stream<bool> get outputAreAllInputsValid;
 }
