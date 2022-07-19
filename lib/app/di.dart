@@ -8,8 +8,10 @@ import 'package:flutter_advanced_clean_architecture_with_mvvm/data/repository/re
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/repository/repository.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/forget_password_usecase.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/login_usecase.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/register_usecase.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/forget_password/viewmodel/forget_password_viewmodel.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/login/viewmodel/login_viewmodel.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/register/viewmodel/register_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -60,5 +62,14 @@ initForgotPasswordModule() {
         () => ForgetPasswordUseCase(instance()));
     instance.registerFactory<ForgetPasswordViewModel>(
         () => ForgetPasswordViewModel(instance()));
+  }
+}
+
+initRegisterModule() {
+  if (!GetIt.I.isRegistered<RegisterUseCase>()) {
+    instance
+        .registerFactory<RegisterUseCase>(() => RegisterUseCase(instance()));
+    instance.registerFactory<RegisterViewModel>(
+        () => RegisterViewModel(instance()));
   }
 }
