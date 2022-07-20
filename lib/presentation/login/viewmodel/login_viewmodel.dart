@@ -25,8 +25,6 @@ class LoginViewModel extends BaseViewModel
   final LoginUseCase _loginUseCase;
   LoginViewModel(this._loginUseCase);
 
-  final AppPreferences _appPreferences = instance<AppPreferences>();
-
   // inputs
   @override
   void dispose() {
@@ -77,7 +75,6 @@ class LoginViewModel extends BaseViewModel
         inputState.add(
           ContentState(),
         );
-        _appPreferences.setUserLoggedIn();
         // navigate to main screen
         isUserLoggedinsuccessfullyStreamController.add(
           true,

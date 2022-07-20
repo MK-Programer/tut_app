@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:country_code_picker/country_code.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/app/app_prefs.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/constants.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/di.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
@@ -35,6 +37,8 @@ class _RegisterViewState extends State<RegisterView> {
   final TextEditingController _mobileNumberEditingController =
       TextEditingController();
 
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+
   _bind() {
     _registerViewModel.start();
     _userNameEditingController.addListener(() {
@@ -49,6 +53,21 @@ class _RegisterViewState extends State<RegisterView> {
     _mobileNumberEditingController.addListener(() {
       _registerViewModel.setMobileNumber(_mobileNumberEditingController.text);
     });
+
+    _registerViewModel.isUserRegisteredInsuccessfullyStreamController.stream
+        .listen(
+      (isLoggedIn) {
+        if (isLoggedIn) {
+          _appPreferences.setUserLoggedIn();
+          // navigate to the main screen
+          SchedulerBinding.instance.addPostFrameCallback((_) {
+            Navigator.of(context).pushReplacementNamed(
+              Routes.mainRoute,
+            );
+          });
+        }
+      },
+    );
   }
 
   @override

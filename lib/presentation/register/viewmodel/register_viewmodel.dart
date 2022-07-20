@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter_advanced_clean_architecture_with_mvvm/app/app_prefs.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/app/di.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/functions.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/register_usecase.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/base/baseviewmodel.dart';
@@ -27,6 +29,8 @@ class RegisterViewModel extends BaseViewModel
   var registerObject = RegisterObject("", "", "", "", "", "");
 
   RegisterViewModel(this._registerUseCase);
+  final StreamController isUserRegisteredInsuccessfullyStreamController =
+      StreamController<bool>();
 
   // inputs
   @override
@@ -90,11 +94,11 @@ class RegisterViewModel extends BaseViewModel
         inputState.add(
           ContentState(),
         );
-        // _appPreferences.setUserLoggedIn();
+
         // navigate to main screen
-        // isUserLoggedinsuccessfullyStreamController.add(
-        //   true,
-        // );
+        isUserRegisteredInsuccessfullyStreamController.add(
+          true,
+        );
       },
     );
   }
@@ -167,6 +171,7 @@ class RegisterViewModel extends BaseViewModel
     passwordStreamController.close();
     profilePictureStreamController.close();
     areAllInputsVaildStreamController.close();
+    isUserRegisteredInsuccessfullyStreamController.close();
     super.dispose();
   }
 

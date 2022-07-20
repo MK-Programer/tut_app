@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/app/app_prefs.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/di.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/login/viewmodel/login_viewmodel.dart';
@@ -23,6 +24,7 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
 
   _bind() {
     _loginViewModel.start(); // tell view model, start your job
@@ -33,6 +35,7 @@ class _LoginViewState extends State<LoginView> {
     _loginViewModel.isUserLoggedinsuccessfullyStreamController.stream.listen(
       (isLoggedIn) {
         if (isLoggedIn) {
+          _appPreferences.setUserLoggedIn();
           // navigate to the main screen
           SchedulerBinding.instance.addPostFrameCallback((_) {
             Navigator.of(context).pushReplacementNamed(
