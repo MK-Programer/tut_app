@@ -42,4 +42,6 @@ class AppStrings {
   static const String register = "Register";
   static const String mobileNumber = "Mobile Number";
   static const String profilePricture = "Profile Picture";
+  static const String photoGallery = "Photo From Gallery";
+  static const String photoCamera = "Photo From Camera";
 }
