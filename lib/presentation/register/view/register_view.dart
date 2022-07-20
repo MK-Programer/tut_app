@@ -121,7 +121,7 @@ class _RegisterViewState extends State<RegisterView> {
                               country.code ?? Constants.token,
                             );
                           },
-                          initialSelection: '+02',
+                          initialSelection: '+20',
                           favorite: const ['+39', 'FR', '+966'],
                           // optional. shows only country name and flag
                           showCountryOnly: true,
@@ -336,7 +336,7 @@ class _RegisterViewState extends State<RegisterView> {
                   Icons.arrow_forward,
                 ),
                 leading: const Icon(
-                  Icons.browse_gallery_outlined,
+                  Icons.camera,
                 ),
                 title: const Text(
                   AppStrings.photoGallery,
