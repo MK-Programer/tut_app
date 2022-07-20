@@ -104,6 +104,29 @@ class _RegisterViewState extends State<RegisterView> {
               const SizedBox(
                 height: AppSize.s28,
               ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: AppPadding.p28,
+                  right: AppPadding.p28,
+                ),
+                child: StreamBuilder<String?>(
+                  stream: _registerViewModel.outputErrorUserName,
+                  builder: (context, snapshot) {
+                    return TextFormField(
+                      // keyboardType: TextInputType.emailAddress,
+                      controller: _userNameEditingController,
+                      decoration: InputDecoration(
+                        hintText: AppStrings.userName,
+                        labelText: AppStrings.userName,
+                        errorText: snapshot.data,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.s18,
+              ),
               Center(
                 child: Padding(
                   padding: const EdgeInsets.only(
@@ -118,7 +141,7 @@ class _RegisterViewState extends State<RegisterView> {
                           onChanged: (country) {
                             // update view model with code
                             _registerViewModel.setCountryCode(
-                              country.code ?? Constants.token,
+                              country.dialCode ?? Constants.token,
                             );
                           },
                           initialSelection: '+20',
@@ -168,52 +191,6 @@ class _RegisterViewState extends State<RegisterView> {
                       decoration: InputDecoration(
                         hintText: AppStrings.emailHint,
                         labelText: AppStrings.emailHint,
-                        errorText: snapshot.data,
-                      ),
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(
-                height: AppSize.s18,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: AppPadding.p28,
-                  right: AppPadding.p28,
-                ),
-                child: StreamBuilder<String?>(
-                  stream: _registerViewModel.outputErrorPassword,
-                  builder: (context, snapshot) {
-                    return TextFormField(
-                      keyboardType: TextInputType.visiblePassword,
-                      controller: _passwordEditingController,
-                      decoration: InputDecoration(
-                        hintText: AppStrings.password,
-                        labelText: AppStrings.password,
-                        errorText: snapshot.data,
-                      ),
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(
-                height: AppSize.s18,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: AppPadding.p28,
-                  right: AppPadding.p28,
-                ),
-                child: StreamBuilder<String?>(
-                  stream: _registerViewModel.outputErrorUserName,
-                  builder: (context, snapshot) {
-                    return TextFormField(
-                      // keyboardType: TextInputType.emailAddress,
-                      controller: _userNameEditingController,
-                      decoration: InputDecoration(
-                        hintText: AppStrings.userName,
-                        labelText: AppStrings.userName,
                         errorText: snapshot.data,
                       ),
                     );
