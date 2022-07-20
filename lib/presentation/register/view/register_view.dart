@@ -254,6 +254,11 @@ class _RegisterViewState extends State<RegisterView> {
                 child: Container(
                   height: AppSize.s40,
                   decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(
+                        AppSize.s8,
+                      ),
+                    ),
                     border: Border.all(
                       color: ColorManager.grey,
                     ),
@@ -302,10 +307,8 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
                 child: TextButton(
                   onPressed: () {
-                    // Navigator.pushReplacementNamed(
-                    //   context,
-                    //   Routes.forgetPasswordhRoute,
-                    // );
+                    // go to login screen
+                    Navigator.of(context).pop();
                   },
                   child: Text(
                     AppStrings.alreadyHaveAccount,
