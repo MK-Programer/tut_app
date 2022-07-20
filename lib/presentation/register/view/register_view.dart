@@ -248,6 +248,22 @@ class _RegisterViewState extends State<RegisterView> {
                   left: AppPadding.p28,
                   right: AppPadding.p28,
                 ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: ColorManager.grey,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.s40,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: AppPadding.p28,
+                  right: AppPadding.p28,
+                ),
                 child: StreamBuilder<bool>(
                   stream: _registerViewModel.outputAreAllInputsValid,
                   builder: (context, snapshot) {
