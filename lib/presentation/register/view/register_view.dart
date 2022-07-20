@@ -1,4 +1,4 @@
-import 'dart:html';
+import 'dart:io';
 
 import 'package:country_code_picker/country_code.dart';
 import 'package:country_code_picker/country_code_picker.dart';
@@ -12,6 +12,7 @@ import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resou
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/values_manager.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -249,10 +250,17 @@ class _RegisterViewState extends State<RegisterView> {
                   right: AppPadding.p28,
                 ),
                 child: Container(
+                  height: AppSize.s40,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: ColorManager.grey,
                     ),
+                  ),
+                  child: GestureDetector(
+                    child: _getMediaWidget(),
+                    onTap: () {
+                      _showPicker(context);
+                    },
                   ),
                 ),
               ),
@@ -310,6 +318,47 @@ class _RegisterViewState extends State<RegisterView> {
       ),
     );
     ;
+  }
+
+  Widget _getMediaWidget() {
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: AppPadding.p8,
+        right: AppPadding.p8,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Flexible(
+            child: Text(
+              AppStrings.profilePricture,
+            ),
+          ),
+          Flexible(
+            child: StreamBuilder<File>(
+              stream: _registerViewModel.outputProfilePicture,
+              builder: (context, snapshot) {
+                return _imagePickedByUser(snapshot.data);
+              },
+            ),
+          ),
+          Flexible(
+            child: SvgPicture.asset(
+              ImageAssets.photoCamera,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _imagePickedByUser(File? image) {
+    if (image != null && image.path.isNotEmpty) {
+      // return image
+      return Image.file(image);
+    } else {
+      return Container();
+    }
   }
 
   @override

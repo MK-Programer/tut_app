@@ -41,4 +41,5 @@ class AppStrings {
   static const String alreadyHaveAccount = "Already have an account ? Login";
   static const String register = "Register";
   static const String mobileNumber = "Mobile Number";
+  static const String profilePricture = "Profile Picture";
 }
