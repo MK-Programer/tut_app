@@ -47,8 +47,8 @@ class _MainViewState extends State<MainView> {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: ColorManager.black,
-              spreadRadius: AppSize.s1_5,
+              color: ColorManager.lightGrey,
+              spreadRadius: AppSize.s1,
             ),
           ],
         ),
