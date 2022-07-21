@@ -26,5 +26,5 @@ abstract class AppSerivceClient {
   );
 
   @GET("/home")
-  Future<HomeResponse> getHome();
+  Future<HomeResponse> getHomeData();
 }
