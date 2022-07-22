@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     child: Image.network(
                       banner.image,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
             )
             .toList(),
         options: CarouselOptions(
-          height: AppSize.s90,
+          height: AppSize.s190,
           autoPlay: true,
           enableInfiniteScroll: true,
           enlargeCenterPage: true,
@@ -147,7 +147,7 @@ class _HomePageState extends State<HomePage> {
           right: AppPadding.p12,
         ),
         child: Container(
-          height: AppSize.s140,
+          height: AppSize.s160,
           margin: const EdgeInsets.symmetric(
             vertical: AppMargin.m12,
           ),
@@ -162,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                         AppSize.s12,
                       ),
                       side: BorderSide(
-                        color: ColorManager.primary,
+                        color: ColorManager.white,
                         width: AppSize.s1,
                       ),
                     ),
@@ -175,8 +175,8 @@ class _HomePageState extends State<HomePage> {
                           child: Image.network(
                             service.image,
                             fit: BoxFit.cover,
-                            width: AppSize.s100,
-                            height: AppSize.s100,
+                            width: AppSize.s120,
+                            height: AppSize.s120,
                           ),
                         ),
                         Padding(
@@ -188,7 +188,7 @@ class _HomePageState extends State<HomePage> {
                             child: Text(
                               service.title,
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.caption,
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           ),
                         ),

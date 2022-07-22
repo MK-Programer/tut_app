@@ -77,7 +77,7 @@ ThemeData getApplicationTheme() {
       bodySmall: getRegularStyle(
         color: ColorManager.grey,
       ),
-      caption: getRegularStyle(
+      bodyMedium: getRegularStyle(
         color: ColorManager.grey2,
         fontSize: FontSize.s12,
       ),
