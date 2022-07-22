@@ -81,6 +81,10 @@ ThemeData getApplicationTheme() {
         color: ColorManager.white,
         fontSize: FontSize.s16,
       ),
+      labelSmall: getBoldStyle(
+        color: ColorManager.primary,
+        fontSize: FontSize.s12,
+      ),
     ),
 
     // input decoration theme (text form field)
