@@ -7,10 +7,12 @@ import 'package:flutter_advanced_clean_architecture_with_mvvm/data/network/netwo
 import 'package:flutter_advanced_clean_architecture_with_mvvm/data/repository/repository_impl.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/repository/repository.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/forget_password_usecase.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/home_usecase.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/login_usecase.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/usecase/register_usecase.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/forget_password/viewmodel/forget_password_viewmodel.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/login/viewmodel/login_viewmodel.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/pages/home/viewmodel/home_viewmodel.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/register/viewmodel/register_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -74,5 +76,12 @@ initRegisterModule() {
         () => RegisterViewModel(instance()));
 
     instance.registerFactory<ImagePicker>(() => ImagePicker());
+  }
+}
+
+initHomeModule() {
+  if (!GetIt.I.isRegistered<HomeUseCase>()) {
+    instance.registerFactory<HomeUseCase>(() => HomeUseCase(instance()));
+    instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance()));
   }
 }

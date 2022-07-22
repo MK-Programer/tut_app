@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/app/di.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/pages/home/viewmodel/home_viewmodel.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,6 +12,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final HomeViewModel _homeViewModel = instance<HomeViewModel>();
+
+  _bind() {
+    _homeViewModel.start();
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return const Center(
@@ -17,5 +31,11 @@ class _HomePageState extends State<HomePage> {
         AppStrings.home,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _homeViewModel.dispose();
+    super.dispose();
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/pages/home_page.dart';
-import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/pages/notifications_page.dart';
-import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/pages/search_page.dart';
-import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/pages/settings_page.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/pages/home/view/home_page.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/pages/notification/notifications_page.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/pages/search/search_page.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/pages/settings/settings_page.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/color_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/values_manager.dart';
