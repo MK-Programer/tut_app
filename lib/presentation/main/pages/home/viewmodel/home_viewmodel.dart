@@ -11,7 +11,7 @@ import 'package:rxdart/rxdart.dart';
 class HomeViewModel extends BaseViewModel
     with HomeViewModelInput, HomeViewModelOutput {
   final StreamController _dataStreamController =
-      BehaviorSubject<List<HomeViewObject>>();
+      BehaviorSubject<HomeViewObject>();
 
   final HomeUseCase _homeUseCase;
   HomeViewModel(this._homeUseCase);
