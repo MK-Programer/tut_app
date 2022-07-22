@@ -1,7 +1,10 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/di.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/model/models.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/pages/home/viewmodel/home_viewmodel.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/color_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/values_manager.dart';
 
@@ -61,7 +64,55 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _getBannersCarousel() {
-    return Center();
+    return StreamBuilder<List<BannerAd>>(
+      stream: _homeViewModel.outputBanners,
+      builder: (context, snapshot) {
+        return _getBannerWidget(snapshot.data);
+      },
+    );
+  }
+
+  Widget _getBannerWidget(List<BannerAd>? banners) {
+    if (banners != null) {
+      return CarouselSlider(
+        items: banners
+            .map(
+              (banner) => SizedBox(
+                width: double.infinity,
+                child: Card(
+                  elevation: AppSize.s1_5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      AppSize.s12,
+                    ),
+                    side: BorderSide(
+                      color: ColorManager.primary,
+                      width: AppSize.s1,
+                    ),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(
+                      AppSize.s12,
+                    ),
+                    child: Image.network(
+                      banner.image,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+            )
+            .toList(),
+        options: CarouselOptions(
+          height: AppSize.s90,
+          autoPlay: true,
+          enableInfiniteScroll: true,
+          enlargeCenterPage: true,
+        ),
+      );
+    } else {
+      return Container();
+    }
   }
 
   Widget _getSection(String title) {
