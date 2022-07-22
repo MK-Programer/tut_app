@@ -5,6 +5,7 @@ import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/model/model
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/pages/home/viewmodel/home_viewmodel.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/color_manager.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/routes_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/values_manager.dart';
 
@@ -136,7 +137,6 @@ class _HomePageState extends State<HomePage> {
         return _getServiceWidget(snapshot.data);
       },
     );
-    ;
   }
 
   Widget _getServiceWidget(List<Service>? services) {
@@ -206,7 +206,58 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _getStores() {
-    return Center();
+    return StreamBuilder<List<Store>>(
+      stream: _homeViewModel.outputStores,
+      builder: (context, snapshot) {
+        return _getStoreWidget(snapshot.data);
+      },
+    );
+  }
+
+  Widget _getStoreWidget(List<Store>? stores) {
+    if (stores != null) {
+      return Padding(
+        padding: const EdgeInsets.only(
+          left: AppPadding.p12,
+          right: AppPadding.p12,
+          top: AppPadding.p12,
+        ),
+        child: Flex(
+          direction: Axis.vertical,
+          children: [
+            GridView.count(
+              crossAxisCount: AppSize.s2,
+              crossAxisSpacing: AppSize.s8,
+              mainAxisSpacing: AppSize.s8,
+              physics: const ScrollPhysics(),
+              shrinkWrap: true,
+              children: List.generate(
+                stores.length,
+                (index) {
+                  return InkWell(
+                    onTap: () {
+                      // navigate to store details screen
+                      Navigator.of(context).pushNamed(
+                        Routes.storeDetailsRoute,
+                      );
+                    },
+                    child: Card(
+                      elevation: AppSize.s4,
+                      child: Image.network(
+                        stores[index].image,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return Container();
+    }
   }
 
   @override
