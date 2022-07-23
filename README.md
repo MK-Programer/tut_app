@@ -1,7 +1,7 @@
 # tut app
 
-Clean Architecture Design Pattern
-MVVM - Model - View - View Model Pattern
+Clean Architecture Design Pattern\
+MVVM - Model - View - View Model Pattern\
 ViewModel Inputs and Outputs
 Base ViewModel and Base UseCase
 Application Layer - Dependency Injection, Routes Manager and Application class
