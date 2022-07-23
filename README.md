@@ -32,4 +32,4 @@ Presentation Layer - Using Json Animations\
 Presentation Layer - Using SVG images\
 Using 18 Flutter Packages\
 Getting Device Info (Android - Ios)\
-Using Abstract classes\
+Using Abstract classes
