@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/data/data_source/local_data_source.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/data/data_source/remote_data_source.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/data/mapper/mapper.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/data/network/error_handler.dart';
@@ -11,9 +12,11 @@ import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/repository/
 
 class RepositoryImpl implements Repository {
   final RemoteDataSource _remoteDataSource;
+  final LocalDataSource _localDataSource;
   final NetworkInfo _networkInfo;
 
-  RepositoryImpl(this._remoteDataSource, this._networkInfo);
+  RepositoryImpl(
+      this._remoteDataSource, this._localDataSource, this._networkInfo);
 
   @override
   Future<Either<Failure, Authentication>> login(
@@ -100,28 +103,39 @@ class RepositoryImpl implements Repository {
 
   @override
   Future<Either<Failure, HomeObject>> getHomeData() async {
-    if (await _networkInfo.isConnected) {
-      try {
-        // its connected to internet , its safe to call API
-        final response = await _remoteDataSource.getHomeData();
-        if (response.status == ApiInternalStatus.SUCCESS) {
-          // success
-          // return either right
-          // return data
-          return Right(response.toDomain());
-        } else {
-          // failure -- return business error
-          // return either left
-          return Left(Failure(ApiInternalStatus.FAILURE,
-              response.message ?? ResponseMessage.DEFAULT));
+    try {
+      // get response from cache
+      final response = await _localDataSource.getHomeData();
+      return Right(response.toDomain());
+    } catch (cacheError) {
+      // cache is not existing or cache is not valid
+      // its the time to get from api side
+      if (await _networkInfo.isConnected) {
+        try {
+          // its connected to internet , its safe to call API
+          final response = await _remoteDataSource.getHomeData();
+          if (response.status == ApiInternalStatus.SUCCESS) {
+            // success
+            // return either right
+            // return data
+            // save home response to cache (local data source)
+            _localDataSource.saveHomeToCache(response);
+
+            return Right(response.toDomain());
+          } else {
+            // failure -- return business error
+            // return either left
+            return Left(Failure(ApiInternalStatus.FAILURE,
+                response.message ?? ResponseMessage.DEFAULT));
+          }
+        } catch (error) {
+          return Left(ErrorHandler.handle(error).failure);
         }
-      } catch (error) {
-        return Left(ErrorHandler.handle(error).failure);
+      } else {
+        // return internet connection error
+        // return either left
+        return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
       }
-    } else {
-      // return internet connection error
-      // return either left
-      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
 }

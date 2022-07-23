@@ -7,6 +7,9 @@ const CACHE_HOME_INTERVAL = 60 * 1000; // 1 MIN CACHE IN MILLISEC.
 abstract class LocalDataSource {
   Future<HomeResponse> getHomeData();
   Future<void> saveHomeToCache(HomeResponse homeResponse);
+
+  void clearCache();
+  void removeFromCache(String key);
 }
 
 class LocalDataSourceImpl implements LocalDataSource {
@@ -28,6 +31,16 @@ class LocalDataSourceImpl implements LocalDataSource {
   @override
   Future<void> saveHomeToCache(HomeResponse homeResponse) async {
     cacheMap[CACHE_HOME_KEY] = CachedItem(homeResponse);
+  }
+
+  @override
+  void clearCache() {
+    cacheMap.clear();
+  }
+
+  @override
+  void removeFromCache(String key) {
+    cacheMap.remove(key);
   }
 }
 
