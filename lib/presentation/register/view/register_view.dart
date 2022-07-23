@@ -412,7 +412,7 @@ class _RegisterViewState extends State<RegisterView> {
           ),
           Flexible(
             child: SvgPicture.asset(
-              ImageAssets.photoCamera,
+              ImageAssets.photoCameraIc,
             ),
           ),
         ],
