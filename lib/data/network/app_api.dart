@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/constants.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/data/response/responses.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/store_details/view/store_details.dart';
 import 'package:retrofit/http.dart';
 part 'app_api.g.dart';
 
@@ -27,4 +28,7 @@ abstract class AppSerivceClient {
 
   @GET("/home")
   Future<HomeResponse> getHomeData();
+
+  @GET("/storeDetails/1")
+  Future<StoreDetailsResponse> getStoreDetails();
 }

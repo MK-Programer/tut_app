@@ -7,7 +7,7 @@ import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/onboa
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/register/view/register_view.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/string_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/splash/splash_view.dart';
-import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/store_details/store_details.dart';
+import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/store_details/view/store_details.dart';
 
 class Routes {
   static const String splashRoute = "/";
@@ -39,6 +39,7 @@ class RouteGenerator {
         initHomeModule();
         return MaterialPageRoute(builder: (_) => const MainView());
       case Routes.storeDetailsRoute:
+        initStoreDetailsModule();
         return MaterialPageRoute(builder: (_) => const StoreDetailsView());
       default:
         return unDefinedRoute();
