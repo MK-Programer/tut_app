@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/pages/home/view/home_page.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/main/pages/notification/notifications_page.dart';
@@ -23,14 +24,14 @@ class _MainViewState extends State<MainView> {
     SettingsPage(),
   ];
 
-  List<String> titles = const [
-    AppStrings.home,
-    AppStrings.search,
-    AppStrings.notifications,
-    AppStrings.settings,
+  List<String> titles = [
+    AppStrings.home.tr(),
+    AppStrings.search.tr(),
+    AppStrings.notifications.tr(),
+    AppStrings.settings.tr(),
   ];
 
-  var title = AppStrings.home;
+  var title = AppStrings.home.tr();
   var _currentIndex = 0;
 
   @override
@@ -57,30 +58,30 @@ class _MainViewState extends State<MainView> {
           unselectedItemColor: ColorManager.grey,
           currentIndex: _currentIndex,
           onTap: onTap,
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              icon: Icon(
+              icon: const Icon(
                 Icons.home_outlined,
               ),
-              label: AppStrings.home,
+              label: AppStrings.home.tr(),
             ),
             BottomNavigationBarItem(
-              icon: Icon(
+              icon: const Icon(
                 Icons.search_outlined,
               ),
-              label: AppStrings.search,
+              label: AppStrings.search.tr(),
             ),
             BottomNavigationBarItem(
-              icon: Icon(
+              icon: const Icon(
                 Icons.notifications_outlined,
               ),
-              label: AppStrings.notifications,
+              label: AppStrings.notifications.tr(),
             ),
             BottomNavigationBarItem(
-              icon: Icon(
+              icon: const Icon(
                 Icons.settings_outlined,
               ),
-              label: AppStrings.settings,
+              label: AppStrings.settings.tr(),
             ),
           ],
         ),

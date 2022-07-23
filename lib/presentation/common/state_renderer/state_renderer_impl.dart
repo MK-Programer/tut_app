@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/constants.dart';
@@ -140,7 +141,7 @@ extension FlowStateExtension on FlowState {
             context,
             StateRendererType.popupSuccessState,
             getMessage(),
-            title: AppStrings.success,
+            title: AppStrings.success.tr(),
           );
           return contentScreenWidget;
         }

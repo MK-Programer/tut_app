@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/assets_manager.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/resources/color_manager.dart';
@@ -65,7 +66,7 @@ class StateRenderer extends StatelessWidget {
               message,
             ),
             _getRetryButton(
-              AppStrings.ok,
+              AppStrings.ok.tr(),
               context,
             )
           ],
@@ -91,7 +92,7 @@ class StateRenderer extends StatelessWidget {
               message,
             ),
             _getRetryButton(
-              AppStrings.retryAgain,
+              AppStrings.retryAgain.tr(),
               context,
             )
           ],
@@ -123,7 +124,7 @@ class StateRenderer extends StatelessWidget {
               message,
             ),
             _getRetryButton(
-              AppStrings.ok,
+              AppStrings.ok.tr(),
               context,
             ),
           ],

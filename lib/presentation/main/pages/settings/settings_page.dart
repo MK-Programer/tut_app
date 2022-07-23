@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/app_prefs.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/di.dart';
@@ -32,7 +33,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ImageAssets.changeLangIc,
             ),
             title: Text(
-              AppStrings.changeLanguage,
+              AppStrings.changeLanguage.tr(),
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             trailing: SvgPicture.asset(
@@ -47,7 +48,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ImageAssets.contactUsIc,
             ),
             title: Text(
-              AppStrings.contactUs,
+              AppStrings.contactUs.tr(),
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             trailing: SvgPicture.asset(
@@ -62,7 +63,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ImageAssets.inviteFriendsIc,
             ),
             title: Text(
-              AppStrings.inviteYourFriends,
+              AppStrings.inviteYourFriends.tr(),
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             trailing: SvgPicture.asset(
@@ -77,7 +78,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ImageAssets.logoutIc,
             ),
             title: Text(
-              AppStrings.logout,
+              AppStrings.logout.tr(),
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             trailing: SvgPicture.asset(

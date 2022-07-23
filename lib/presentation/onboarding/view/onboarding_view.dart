@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/app_prefs.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/di.dart';
@@ -84,7 +85,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                         AppStrings.skip,
                         style: Theme.of(context).textTheme.titleMedium,
                         textAlign: TextAlign.end,
-                      ),
+                      ).tr(),
                     ),
                   ),
 

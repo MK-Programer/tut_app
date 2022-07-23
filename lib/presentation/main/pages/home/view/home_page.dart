@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/di.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/domain/model/models.dart';
@@ -59,9 +60,9 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _getBannerWidget(snapshot.data?.banners),
-            _getSection(AppStrings.services),
+            _getSection(AppStrings.services.tr()),
             _getServiceWidget(snapshot.data?.services),
-            _getSection(AppStrings.stores),
+            _getSection(AppStrings.stores.tr()),
             _getStoreWidget(snapshot.data?.stores),
           ],
         );

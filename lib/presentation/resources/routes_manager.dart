@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/app/di.dart';
 import 'package:flutter_advanced_clean_architecture_with_mvvm/presentation/forget_password/view/forget_password.dart';
@@ -50,14 +51,14 @@ class RouteGenerator {
     return MaterialPageRoute(
       builder: (_) => Scaffold(
         appBar: AppBar(
-          title: const Text(
-            AppStrings.noRouteFound,
+          title: Text(
+            AppStrings.noRouteFound.tr(),
           ),
         ),
         // ignore: prefer_const_constructors
         body: Center(
-          child: const Text(
-            AppStrings.noRouteFound,
+          child: Text(
+            AppStrings.noRouteFound.tr(),
           ),
         ),
       ),
