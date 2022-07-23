@@ -399,7 +399,7 @@ class _RegisterViewState extends State<RegisterView> {
         children: [
           const Flexible(
             child: Text(
-              AppStrings.profilePricture,
+              AppStrings.profilePicture,
             ),
           ),
           Flexible(
